@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+}
+
+header {
+  top: 0;
+  position: sticky;
+  height: 10vh;
+  background-color: rgb(219, 212, 212);
+  z-index: 1;
+}
+
+.needle {
+  transition: 2s;
+  left: 95px;
+  top: -10vh;
+  position: absolute;
+  height: 10vh;
+  z-index: 2;
+}
+
+.inv-div {
+  left: 40px;
+  height: 10vh;
+  width: 10vh;
+  position: absolute;
+  z-index: 10;
+}
+
+#needle-animation {
+  top: -3vh;
+  transition: 2s;
+}
+
+.logo {
+  position: relative;
+  height: 10vh;
+  left: 40px;
+  transition: all 0.5s;
+  animation: rotation 1.3s infinite linear;
+  animation-play-state: paused;
+}
+
+#run-animation {
+  animation-play-state: running;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gridbox {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+  grid-column-gap: 5%;
+  grid-row-gap: 1%;
+  justify-items: center;
+  align-items: center;
+  width: 80%;
+  margin-left: 10%;
+  z-index: 0;
+}
+
+.product {
+  width: 300px;
+  height: 450px;
+  box-shadow: 0 0 0 0.5vh silver;
+  transition: 0.3s;
+  margin: 2vh;
+  background-color: #f5f5f5;
+  font-family: sans-serif;
+}
+
+.product:hover {
+  transition: 0.5s;
+  transform: scale(1.05);
+}
+
+.productimage {
+  margin: 15px;
+  width: 270px;
+  height: 270px;
+}
+
+.producttitle {
+  font-size: 14px;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+.productartist {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.productinformation {
+  display: flex;
+  margin-left: 20px;
+  margin-top: 30px;
+  width: 260px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 35px;
+  color: white;
+}
+
+.productinformationdivs {
+  width: 50px;
+  height: 35px;
+  background-color: rgb(69, 69, 69);
+}
+
+.producttype {
+  margin-left: 160px;
+}
