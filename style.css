@@ -88,12 +88,13 @@ header {
 }
 
 .producttitle {
-  font-size: 14px;
+  font-size: 11px;
   margin-left: 15px;
   margin-top: 5px;
 }
 
 .productartist {
+  font-size: 11px;
   margin-left: 15px;
   margin-top: 10px;
 }
@@ -101,7 +102,7 @@ header {
 .productinformation {
   display: flex;
   margin-left: 20px;
-  margin-top: 30px;
+  margin-bottom: 5px;
   width: 260px;
   text-align: center;
   vertical-align: middle;

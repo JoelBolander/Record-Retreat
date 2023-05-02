@@ -21,16 +21,8 @@ function arm_out() {
   document.querySelector(".logo").setAttribute("id", "");
 }
 
-// async function getAlbum() {
-//     let x = await fetch('https://spotify23.p.rapidapi.com/search/?q=%3CREQUIRED%3E&type=multi&offset=0&limit=10&numberOfTopResults=5', options);
-//     let y = await x.text();
-//     myDisplay(y);
-// }
-
-// let albums = await getAlbum()
-
 async function search(searchterm) {
-  const url = `https://spotify23.p.rapidapi.com/search/?q=${searchterm}&type=albums&offset=0&limit=10&numberOfTopResults=5`;
+  const url = `https://spotify23.p.rapidapi.com/search/?q=${searchterm}&type=albums&offset=0&limit=20&numberOfTopResults=5`;
   const options = {
     method: "GET",
     headers: {
@@ -43,7 +35,7 @@ async function search(searchterm) {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log(result);
+    return result;
   } catch (error) {
     console.error(error);
   }
@@ -51,6 +43,24 @@ async function search(searchterm) {
 
 let searchbar = document.getElementById("coolclass");
 
+let resultBox = document.getElementById("result-box");
+
 document.getElementById("knappen").addEventListener("click", async function () {
-  await search(searchbar.innerHTML);
+  result = await search(searchbar.innerHTML);
+  resultBox.innerHTML = "";
+  for (let albumIndex = 0; albumIndex < 20; albumIndex++) {
+    resultBox.innerHTML += `<div class="product"><img class="productimage" src="${
+      result.albums.items[albumIndex].data.coverArt.sources[0].url
+    }" alt="Bild på ${
+      result.albums.items[albumIndex].data.name
+    }" /> <div class="producttitle"><h2>${
+      result.albums.items[albumIndex].data.name
+    }</h2></div> <div class="productartist"><h3>${
+      result.albums.items[0].data.artists.items[0].profile.name
+    }</h3></div><div class="productinformation"> <div class="productinformationdivs">${
+      Math.floor(Math.random() * 200 + 100) + "kr"
+    }</div><div class="productinformationdivs producttype">LP</div></div></div>`;
+  }
+  console.log(result);
+  console.log(result.albums.items[0].data.artists.items[0].profile.name);
 });
