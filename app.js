@@ -22,7 +22,7 @@ function arm_out() {
 }
 
 async function search(searchterm) {
-  const url = `https://spotify23.p.rapidapi.com/search/?q=${searchterm}&type=albums&offset=0&limit=20&numberOfTopResults=5`;
+  const url = `https://spotify23.p.rapidapi.com/search/?q=${searchterm}&type=albums&offset=0&limit=10&numberOfTopResults=5`;
   const options = {
     method: "GET",
     headers: {
@@ -34,7 +34,9 @@ async function search(searchterm) {
 
   try {
     const response = await fetch(url, options);
+    console.log(response);
     const result = await response.json();
+    console.log(result);
     return result;
   } catch (error) {
     console.error(error);
