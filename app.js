@@ -6,6 +6,8 @@ var yellow_submarine = new Audio("audio/yellow_submarine.mp3");
 
 let skiva = document.querySelector(".inv-div");
 
+const REPLYAMOUNT = 100;
+
 skiva.addEventListener("mouseover", arm_in);
 skiva.addEventListener("mouseout", arm_out);
 
@@ -22,7 +24,7 @@ function arm_out() {
 }
 
 async function search(searchterm) {
-  const url = `https://spotify23.p.rapidapi.com/search/?q=${searchterm}&type=albums&offset=0&limit=10&numberOfTopResults=5`;
+  const url = `https://spotify23.p.rapidapi.com/search/?q=${searchterm}&type=albums&offset=0&limit=${REPLYAMOUNT}&numberOfTopResults=5`;
   const options = {
     method: "GET",
     headers: {
@@ -31,26 +33,38 @@ async function search(searchterm) {
       "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
     },
   };
-
-  try {
-    const response = await fetch(url, options);
-    console.log(response);
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-    console.error(error);
+  while (true) {
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
-let searchbar = document.getElementById("coolclass");
+let searchbar = document.getElementById("search");
 
 let resultBox = document.getElementById("result-box");
 
-document.getElementById("knappen").addEventListener("click", async function () {
-  result = await search(searchbar.innerHTML);
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    searchCall();
+  }
+});
+
+async function searchCall() {
+  result = await search(searchbar.value);
   resultBox.innerHTML = "";
-  for (let albumIndex = 0; albumIndex < 20; albumIndex++) {
+  if (result.albums.totalCount === 0) {
+    resultBox.innerHTML = "NO RESULTS";
+  }
+  for (
+    let albumIndex = 0;
+    albumIndex < result.albums.items.length;
+    albumIndex++
+  ) {
     resultBox.innerHTML += `<div class="product"><img class="productimage" src="${
       result.albums.items[albumIndex].data.coverArt.sources[0].url
     }" alt="Bild på ${
@@ -58,11 +72,10 @@ document.getElementById("knappen").addEventListener("click", async function () {
     }" /> <div class="producttitle"><h2>${
       result.albums.items[albumIndex].data.name
     }</h2></div> <div class="productartist"><h3>${
-      result.albums.items[0].data.artists.items[0].profile.name
+      result.albums.items[albumIndex].data.artists.items[0].profile.name
     }</h3></div><div class="productinformation"> <div class="productinformationdivs">${
       Math.floor(Math.random() * 200 + 100) + "kr"
     }</div><div class="productinformationdivs producttype">LP</div></div></div>`;
   }
   console.log(result);
-  console.log(result.albums.items[0].data.artists.items[0].profile.name);
-});
+}
