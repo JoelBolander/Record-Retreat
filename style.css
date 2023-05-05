@@ -110,7 +110,7 @@ header {
   line-height: 35px;
   color: white;
   position: absolute;
-  bottom: 5px;
+  bottom: 15px;
 }
 
 .productinformationdivs {
@@ -124,8 +124,9 @@ header {
 }
 
 #search {
+  padding-left: 15px;
   position: absolute;
-  border: 1px solid white;
+  border: 2px solid darkgray;
   border-radius: 10px;
   background-color: gray;
   color: white;

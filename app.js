@@ -56,6 +56,7 @@ document.addEventListener("keyup", (e) => {
 
 async function searchCall() {
   result = await search(searchbar.value);
+  console.log(result.albums.items[0].data);
   resultBox.innerHTML = "";
   if (result.albums.totalCount === 0) {
     resultBox.innerHTML = "NO RESULTS";
@@ -74,7 +75,13 @@ async function searchCall() {
     }</h2></div> <div class="productartist"><h3>${
       result.albums.items[albumIndex].data.artists.items[0].profile.name
     }</h3></div><div class="productinformation"> <div class="productinformationdivs">${
-      Math.floor(Math.random() * 200 + 100) + "kr"
+      Math.floor(
+        result.albums.items[albumIndex].data.date.year / 10 +
+          (result.albums.items[albumIndex].data.artists.items[0].profile.name
+            .length *
+            result.albums.items[albumIndex].data.name.length) /
+            3
+      ) + "kr"
     }</div><div class="productinformationdivs producttype">LP</div></div></div>`;
   }
   console.log(result);
