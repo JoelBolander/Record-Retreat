@@ -22,15 +22,29 @@
         src="Images/vinylskiva.png"
         alt="En bild på en vinylskiva"
       />
-      <input type="text" placeholder="Search..." id="search" />
-      <div class="login-button">
-        <a href="login.html" class="login-link"><h1>Log In</h1></a>
-      </div>
     </header>
-    <main>
-      <div class="gridbox" id="result-box"></div>
+    <main class="login-body login-background">
+      <div class="login-box">
+        <form action="index.html" class="form">
+          <h1>Logga In</h1>
+          <h2>E-Mail</h2>
+          <input
+            type="email"
+            placeholder="this@realmail.com"
+            required="required"
+            class="text-input"
+          />
+          <h2>Password</h2>
+          <input
+            type="password"
+            placeholder="Banana12321"
+            required="required"
+            class="text-input"
+          />
+          <input type="submit" value="Log In" id="login-button" />
+        </form>
+      </div>
     </main>
   </body>
-  <script src="app.js"></script>
   <script src="logo_animate.js"></script>
 </html>
