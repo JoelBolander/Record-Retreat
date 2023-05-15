@@ -122,7 +122,7 @@ async function search(searchterm) {
 }
 
 document.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") {
+  if (e.key === "Enter" && searchbar === document.activeElement) {
     searchterm = searchbar.value;
     searchCall(searchterm);
   }
