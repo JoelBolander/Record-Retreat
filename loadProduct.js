@@ -5,9 +5,7 @@ let Product_Image = document.getElementById("image");
 let Product_Year = document.getElementById("year");
 let Product_Link = document.getElementById("link");
 
-let searchbar = document.getElementById("search");
-
-let addToCart = document.getElementById("add-to-cart-button");
+let addToCartButton = document.getElementById("add-to-cart-button");
 
 let title;
 let artist;
@@ -43,24 +41,15 @@ addEventListener("load", (e) => {
   Product_Price.innerHTML = price + "kr";
   Product_Image.setAttribute("src", image);
   Product_Year.innerHTML = "Date: " + year;
-  console.log(product);
   Product_Link.setAttribute("href", `https://open.spotify.com/search/${title}`);
   Product_Link.innerHTML = title;
 
-  addToCart.addEventListener("click", (e) => {
-    localStorage.setItem("cart", localStorage.getItem("cart") + 1);
-    console.log(localStorage.getItem("cart"));
+  addToCartButton.addEventListener("click", (e) => {
+    addToCart([title, artist, price, image]);
+    active_cart = getCart();
+    console.log(active_cart);
+    for (let cart_item in active_cart) {
+      console.log(active_cart[cart_item]);
+    }
   });
-});
-
-console.log(year);
-
-document.addEventListener("keyup", (e) => {
-  console.log("lool");
-  if (e.key === "Enter") {
-    console.log("lol");
-    localStorage.setItem("justSearched", true);
-    localStorage.setItem("searchTerm", searchbar.value);
-    window.location.href = "index.html";
-  }
 });

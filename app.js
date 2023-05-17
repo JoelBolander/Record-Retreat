@@ -129,7 +129,7 @@ document.addEventListener("keyup", (e) => {
 });
 
 async function searchCall(searchterm) {
-  result = await search(searchterm);
+  let result = await search(searchterm);
   resultBox.innerHTML = "";
   if (result.albums.totalCount === 0) {
     resultBox.classList.add("no-results");
@@ -168,7 +168,6 @@ async function searchCall(searchterm) {
     let products = document.querySelectorAll(".product");
     products.forEach((product) => {
       product.addEventListener("click", (event) => {
-        console.log(product.innerHTML);
         localStorage.setItem("selectedProduct", product.innerHTML);
         window.location.href = "product.html";
       });

@@ -1,20 +1,31 @@
-let cart = {};
+let cart = JSON.parse(localStorage.getItem("cart"));
+if (!cart) {
+  let cart = {};
+}
+
+let searchbar = document.getElementById("search");
 
 function addToCart(item) {
-  if (cart[item]) {
-    cart[item] += 1;
+  if (cart[item[0]]) {
+    cart[item[0]].quantity += 1;
   } else {
-    cart[item] = 1;
+    cart[item[0]] = {
+      title: item[0],
+      artist: item[1],
+      price: item[2],
+      image: item[3],
+      quantity: 1,
+    };
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 function removeFromCart(item) {
-  if (cart[item]) {
-    cart[item] -= 1;
-    if (cart[item] === 0) {
-      delete cart[item];
+  if (cart[item[0]]) {
+    cart[item[0]].quantity -= 1;
+    if (cart[item[0]].quantity === 0) {
+      delete cart[item[0]];
     }
   }
 
@@ -28,3 +39,13 @@ function getCart() {
   }
   return cart;
 }
+
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    if (searchbar === document.activeElement) {
+      localStorage.setItem("justSearched", true);
+      localStorage.setItem("searchTerm", searchbar.value);
+      window.location.href = "index.html";
+    }
+  }
+});
