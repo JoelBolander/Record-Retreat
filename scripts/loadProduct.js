@@ -13,6 +13,9 @@ let closeWindow2 = document.getElementsByClassName("close-window")[1];
 let yes = document.getElementById("yes");
 let no = document.getElementById("no");
 
+let tabTitle = document.getElementById("tab-title");
+let favicon = document.getElementById("favicon");
+
 addEventListener("load", (e) => {
   product = localStorage.getItem("selectedProduct");
 
@@ -38,6 +41,9 @@ addEventListener("load", (e) => {
   Product_Artist.forEach((element) => {
     element.innerHTML += artist;
   });
+
+  tabTitle.innerHTML = title;
+  favicon.setAttribute("href", image);
 
   Product_Price.innerHTML = price + "kr";
   Product_Image.setAttribute("src", image);
