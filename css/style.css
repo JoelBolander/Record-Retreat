@@ -1,0 +1,734 @@
+/* Laddar in font */
+@font-face {
+  font-family: customFonts;
+  src: url('../fonts/Neon.ttf');
+}
+
+main {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 35vh;
+  background-color: rgb(10, 10, 10);
+  color: white;
+  box-shadow: 0 0 0 15px rgb(32, 32, 32);
+}
+
+.footer-div {
+  margin-top: 5vh;
+  text-align: center;
+  display: flex;
+}
+
+.footer-list-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 20vw;
+  height: 15vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.footer-list {
+  padding: 0;
+  list-style: none;
+}
+
+.footer-list-item {
+  margin: 10px;
+}
+
+.footer-icon-div {
+  display: flex;
+  margin-top: 5vh;
+}
+
+.footer-icon {
+  margin: 3px;
+}
+
+/* Sätter font och tar bort automatiska margins */
+* {
+  margin: 0;
+  font-family: customFonts;
+}
+
+/* HUVUDSIDA */
+/* Stylar header för att den ska ligga över allt och vara kvar på toppen */
+header {
+  top: 0;
+  position: sticky;
+  height: 10vh;
+  background-color: rgb(219, 212, 212);
+  z-index: 1;
+}
+
+/* Ger styling till nålen som animeras in */
+.needle {
+  transition: 2s;
+  left: 95px;
+  top: -10vh;
+  position: absolute;
+  height: 10vh;
+  z-index: 2;
+}
+
+/* Osynlig div som ligger över logo och nål för att nålen in ska blocka event listener hover */
+.inv-div {
+  left: 40px;
+  height: 10vh;
+  width: 10vh;
+  position: absolute;
+  z-index: 10;
+}
+
+/* Animation för nålen som kommer in */
+#needle-animation {
+  top: -3vh;
+  transition: 2s;
+}
+
+/* Loggan, skivan */
+.logo {
+  position: relative;
+  height: 10vh;
+  left: 40px;
+  transition: all 0.5s;
+  animation: rotation 1.3s infinite linear;
+  animation-play-state: paused;
+}
+
+/* Kör animationen som är en oändlig rotation */
+#run-animation {
+  animation-play-state: running;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Searchbar i header */
+#search {
+  padding-left: 15px;
+  position: absolute;
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  background-color: gray;
+  color: white;
+  height: 6vh;
+  width: 60vw;
+  margin-top: 2vh;
+  margin-left: 5vw;
+  font-size: 20px;
+}
+
+#search:hover {
+  cursor: pointer;
+}
+
+/* Placeholder text i searchbar vit */
+#search::placeholder {
+  color: white;
+}
+
+/* Knapp i header för att komma till login sidan */
+.login-button {
+  position: absolute;
+  height: 5vh;
+  width: max(100px, 5vw);
+  right: 10vw;
+  top: 2.5vh;
+  background-color: gray;
+  border-radius: 10px;
+  transform: scale(1);
+  transition: 0.3s;
+}
+
+/* Faktiska länken för att komma till login sidan */
+.login-link {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgb(230, 230, 230);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Förstora vid hover */
+.login-button:hover {
+  transform: scale(1.03);
+  transition: 0.5s;
+}
+
+/* Knapp för kundvagn */
+.cart-button {
+  position: absolute;
+  top: 2.5vh;
+  right: 3vw;
+  height: 5vh;
+  width: 5vh;
+  background-image: url("../Images/cart.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cart-link {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.hamburger {
+  top: 1vh;
+  right: 1vh;
+  position: absolute;
+  display: none;
+  width: 8vh;
+  height: 8vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../images/hamburger.png");
+}
+
+.nav {
+  top: 10vh;
+  position: absolute;
+  display: none;
+}
+
+.nav-menu {
+  padding: 0;
+  position: relative;
+  background-color: rgb(232, 232, 232);
+  list-style: none;
+}
+
+.nav-list-item {
+  display: flex;
+  width: 100vw;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.nav-link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px;
+}
+
+#hero {
+  background-color: rgb(55, 55, 55);
+  top: 0;
+  height: 90vh;
+}
+
+#result-title {
+  margin: 2vh;
+}
+
+/* Grid för skivor */
+.grid-box {
+  margin-bottom: 10vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+  grid-column-gap: 5%;
+  grid-row-gap: 30px;
+  justify-items: center;
+  align-items: center;
+  width: 80%;
+  z-index: 0;
+}
+
+/* När det inte finns några resultat */
+.no-results {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* produkter */
+.product {
+  width: 300px;
+  height: 450px;
+  box-shadow: 0 0 0 0.5vh silver;
+  transition: 0.3s;
+  margin: 2vh;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+/* Förstora produkt vid hover */
+.product:hover {
+  transition: 0.5s;
+  transform: scale(1.05);
+}
+
+/* Produkt bild */
+.product-image {
+  margin: 15px;
+  width: 270px;
+  height: 270px;
+}
+
+/* Produkt titel */
+.product-title {
+  font-size: 15px;
+  width: 270px;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+/* Produkt artist */
+.product-artist {
+  font-size: 15px;
+  width: 270px;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+/* Information om produkten, pris och typ */
+.product-information {
+  display: flex;
+  margin-left: 20px;
+  width: 260px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 35px;
+  color: white;
+  position: absolute;
+  bottom: 15px;
+}
+
+/* Divar i ovanstående */
+.product-information-divs {
+  width: 50px;
+  height: 35px;
+  background-color: rgb(69, 69, 69);
+}
+
+/* Produkt typ, CD eller LP */
+.product-type {
+  margin-left: 160px;
+}
+
+#display-none {
+  display: none;
+}
+
+/* LOGGA IN SIDA */
+/* Bakgrund till main i login sidan */
+.login-body {
+  height: 90vh;
+  width: 100%;
+  background-image: url("../Images/album_background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lådan som login formuläret finns i */
+.login-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  width: max(300px, 30vw);
+  height: max(410px, 40vh);
+  background-color: rgb(168, 168, 168);
+  color: rgb(32, 32, 32);
+  border: 10px solid rgb(32, 32, 32);
+}
+
+/* Formuläret */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Avstånd mellan children i formuläret */
+.form>* {
+  margin: 2vh 0;
+}
+
+/* Knappen för att logga in i formuläret */
+#login-button {
+  color: white;
+  background-color: rgb(78, 78, 78);
+  width: 100px;
+  height: 35px;
+  border: 1px solid rgb(32, 32, 32);
+  border-radius: 7px;
+}
+
+/* Text inputs i formuläret */
+.text-input {
+  padding: 5px;
+  border: 1px solid rgb(32, 32, 32);
+  border-radius: 7px;
+}
+
+/* PRODUKT SIDA */
+/* Body till produkt */
+.product-body {
+  position: relative;
+  margin-top: 5vh;
+  width: 60vw;
+  height: 70vh;
+}
+
+.product-site-image {
+  margin-top: 5vh;
+  margin-left: 5vh;
+  width: 25vw;
+  height: 25vw;
+}
+
+.product-site-title-artist-box {
+  margin-top: 4vh;
+  margin-right: 5vh;
+  position: relative;
+  width: 100%;
+}
+
+.product-site-title-artist {
+  font-size: xx-large;
+  margin-left: 5vh;
+  margin-top: 2vh;
+}
+
+.product-site-div {
+  display: flex;
+  width: 100%;
+  height: calc(10vh + 25vw);
+}
+
+.product-site-information-box {
+  margin-left: 5vh;
+  margin-bottom: 5vh;
+  font-size: 20px;
+}
+
+#add-to-cart-button {
+  bottom: 5vh;
+  right: 5vh;
+  position: absolute;
+}
+
+.popup-window {
+  position: fixed;
+  width: max(30vw, 270px);
+  height: 30vh;
+  top: 30vh;
+  background-color: rgb(32, 32, 32);
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(232, 232, 232);
+}
+
+.popup-text {
+  margin-top: 5vh;
+  font-size: 2vh;
+}
+
+.close-window {
+  margin-left: max(240px, 27vw);
+  margin-top: 2vh;
+}
+
+.answer {
+  margin-top: 2vh;
+  display: flex;
+}
+
+.answer>* {
+  font-size: large;
+  margin: 2vh;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* KUNDVAGN SIDA */
+#cart-body {
+  width: 60vw;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  width: 45vw;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  height: 10vh;
+  background-color: rgb(219, 212, 212);
+  position: relative;
+}
+
+.cart-item-image {
+  width: 8vh;
+  margin: 1vh;
+}
+
+.cart-item-info {
+  font-size: 25px;
+}
+
+.cart-item-price {
+  position: absolute;
+  right: 8vw;
+  font-size: 20px;
+  margin: 2vh;
+}
+
+.number-input {
+  position: absolute;
+  right: 3vw;
+  width: 3vh;
+  height: 2vh;
+}
+
+.number-input::-webkit-inner-spin-button,
+.number-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.regulators {
+  position: absolute;
+  margin: 1vh;
+  height: 3vh;
+  width: 3vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.minus {
+  background-image: url("../Images/minus.png");
+  right: 5vw
+}
+
+.plus {
+  right: 0;
+  background-image: url("../Images/plus.png");
+}
+
+@media screen and (max-width: 1600px) {
+  .cart-item {
+    width: 80vw;
+  }
+
+  .cart-item-price {
+    right: 15vw;
+  }
+
+  .minus {
+    right: 10vw;
+  }
+
+  .number-input {
+    right: 5vw;
+  }
+}
+
+@media screen and (max-width: 1310px) {
+  #hero {
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  #search {
+    width: 40vw;
+  }
+
+  .login-button {
+    right: 20vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #add-to-cart-button {
+    right: 5vw;
+  }
+
+  .product-body {
+    display: flex;
+    width: 90vw;
+    height: 90vh;
+  }
+
+  .product-site-title-artist-box {
+    position: absolute;
+    top: 90vw;
+  }
+
+  .product-site-title-artist {
+    font-size: 20px;
+  }
+
+  .product-site-image {
+    width: 80vw;
+    height: 80vw;
+    margin-top: 5vw;
+    margin-left: 5vw;
+  }
+
+  .product-site-information-box {
+    display: none;
+  }
+
+  .cart-item-info {
+    font-size: 15px;
+  }
+
+  .number-input {
+    right: 7vw;
+  }
+
+  .minus {
+    right: 12vw;
+  }
+
+  .cart-item-price {
+    right: 17vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .logo {
+    left: 10px;
+  }
+
+  .needle {
+    left: 65px;
+  }
+
+  .inv-div {
+    left: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .cart-item {
+    height: 20vh;
+    width: 95vw;
+  }
+
+  .cart-item-image {
+    height: 16vh;
+    width: 16vh;
+  }
+
+  .cart-item-info {
+    position: absolute;
+    top: 2vh;
+    left: 20vh;
+  }
+
+  .minus {
+    right: 20vw;
+  }
+
+  .cart-item-price {
+    right: 25vw;
+  }
+
+  .number-input {
+    right: 11vw;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .login-button {
+    display: none;
+  }
+
+  .cart-button {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  footer {
+    height: 120vh;
+  }
+
+  .footer-div {
+    margin-top: 0;
+    flex-direction: column;
+  }
+
+  .footer-list-div {
+    margin-top: 15vh;
+  }
+
+  .footer-icon-div {
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .product {
+    transform: scale(0.7);
+  }
+
+  .product:hover {
+    transform: scale(0.75);
+  }
+
+  .grid-box {
+    width: auto;
+    grid-row-gap: 0px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .product {
+    transform: scale(0.6);
+  }
+
+  .product:hover {
+    transform: scale(0.65);
+  }
+
+  .grid-box {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+  }
+}

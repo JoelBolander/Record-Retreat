@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/c695801bdc.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
@@ -22,6 +26,27 @@
         src="Images/vinylskiva.png"
         alt="En bild på en vinylskiva"
       />
+      <input type="text" placeholder="Search..." id="search" />
+      <div class="login-button">
+        <a href="login.html" class="login-link"><h2>Log In</h2></a>
+      </div>
+      <div class="cart-button">
+        <a href="cart.html" class="cart-link"></a>
+      </div>
+      <div class="hamburger"></div>
+      <nav class="nav">
+        <ul class="nav-menu">
+          <li class="nav-list-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-list-item">
+            <a class="nav-link" href="cart.html">Cart</a>
+          </li>
+          <li class="nav-list-item">
+            <a class="nav-link" href="login.html">Log In</a>
+          </li>
+        </ul>
+      </nav>
     </header>
     <main class="login-body login-background">
       <div class="login-box">
@@ -45,6 +70,45 @@
         </form>
       </div>
     </main>
+    <footer>
+      <div class="footer-div">
+        <div class="footer-list-div">
+          <h2 class="footer-title">About Us</h2>
+          <ul class="footer-list">
+            <li class="footer-list-item">Frequent Questions</li>
+            <li class="footer-list-item">Career</li>
+            <li class="footer-list-item">Customer Service</li>
+            <li class="footer-list-item">Information</li>
+          </ul>
+        </div>
+        <div class="footer-list-div">
+          <h2 class="footer-title">Contact</h2>
+          <ul class="footer-list">
+            <li class="footer-list-item">joel.bolander@recordretreat.com</li>
+            <li class="footer-list-item">480-200-5669</li>
+            <li class="footer-list-item">4302 W Thomas Rd</li>
+            <li class="footer-list-item">Phoenix, AZ 85031, USA</li>
+          </ul>
+        </div>
+        <div class="footer-list-div">
+          <h2 class="footer-title">Rules and Laws</h2>
+          <ul class="footer-list">
+            <li class="footer-list-item">Delivery</li>
+            <li class="footer-list-item">Return policies</li>
+            <li class="footer-list-item">Payment</li>
+            <li class="footer-list-item">Copyright</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-icon-div">
+        <i class="fa-brands fa-instagram fa-2x footer-icon"></i>
+        <i class="fa-brands fa-twitter fa-2x footer-icon"></i>
+        <i class="fa-brands fa-youtube fa-2x footer-icon"></i>
+        <i class="fa-brands fa-reddit fa-2x footer-icon"></i>
+        <i class="fa-brands fa-facebook fa-2x footer-icon"></i>
+      </div>
+    </footer>
   </body>
-  <script src="logo_animate.js"></script>
+  <script src="scripts/logo_animate.js"></script>
+  <script src="scripts/cart.js"></script>
 </html>
